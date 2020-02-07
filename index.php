@@ -77,14 +77,14 @@ $opts = [
 $url = "https://api.weather.yandex.ru/v1/forecast?lat=$lat&lon=$lon&limit=1&hours=false&extra=false";
 $context = stream_context_create($opts);
 $contents = file_get_contents($url, false, $context);
-$clima = json_decode($contents);
+$weather = json_decode($contents);
 
 
-$temp = $clima->fact->temp;
-$humidity = $clima->fact->humidity;
-$speed = $clima->fact->wind_speed;
-$pressure = $clima->fact->pressure_mm;
-$condition = $clima->fact->condition;
+$temp = $weather->fact->temp;
+$humidity = $weather->fact->humidity;
+$speed = $weather->fact->wind_speed;
+$pressure = $weather->fact->pressure_mm;
+$condition = $weather->fact->condition;
 	switch ($condition) {
 		case 'clear' : $cond = 'Ясно';break;
 		case 'partly-cloudy' : $cond = 'Малооблачно';break;
@@ -107,7 +107,7 @@ $condition = $clima->fact->condition;
 		
 	}
 
-$feels_like = $clima->fact->feels_like;
+$feels_like = $weather->fact->feels_like;
 
 
 
